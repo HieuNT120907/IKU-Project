@@ -1,159 +1,165 @@
 📦 Iku Project – Order Management System
 📌 Giới thiệu
 
-Iku Project là một dự án Spring Boot REST API được xây dựng trong quá trình thực tập Backend Java tại FPT Polytechnic.
-Dự án tập trung vào quản lý hệ thống Người dùng – Sản phẩm – Đơn hàng, áp dụng kiến trúc tách lớp rõ ràng, bảo mật bằng JWT và xử lý ngoại lệ tập trung.
+Iku Project là một dự án Spring Boot REST API được xây dựng trong quá trình thực tập Backend Java.
+Dự án tập trung vào việc quản lý User – Product – Order, áp dụng kiến trúc RESTful API, tách lớp rõ ràng và xử lý exception tập trung.
 
 📋 Mô tả nghiệp vụ (Business Description)
 
-Hệ thống hỗ trợ quản lý quy trình bán hàng và điều phối công việc nội bộ:
+Hệ thống hỗ trợ quản lý quy trình bán hàng và điều phối công việc nội bộ.
 
 👤 User
-Người sử dụng hệ thống (Nhân sự).
-Có vai trò xác định quyền hạn:
-ROLE_ADMIN
-ROLE_USER
-Một User có thể phụ trách nhiều Đơn hàng.
-🛍️ SanPham (Sản phẩm/Dự án)
-Đại diện cho danh mục hàng hóa hoặc dự án.
-Mỗi sản phẩm có:
+
+User là người sử dụng hệ thống, có thể:
+
+Tham gia nhiều công việc
+Được gán nhiều đơn hàng
+🛍️ SanPham (Product / Dự án)
+Đại diện cho sản phẩm hoặc dự án
+Bao gồm:
 Mã định danh
 Đơn giá (BigDecimal)
 Nhà sản xuất
 📝 DonHang (Task / Công việc)
-Đơn vị công việc trung tâm:
+
+Đơn vị công việc trung tâm của hệ thống.
+
+Mỗi DonHang:
+
 Thuộc về một SanPham
 Được gán cho một User
-
-Có trạng thái xử lý:
-
+Có trạng thái:
 TODO → IN_PROGRESS → DONE
 🔗 Quan hệ nghiệp vụ
-Một User phụ trách nhiều DonHang (1-N).
-Một SanPham chứa nhiều DonHang (1-N).
-Hệ thống chặn xóa hoặc sửa thông tin quan trọng khi đơn hàng đã ở trạng thái DONE.
+Một User có thể được gán nhiều DonHang
+Một SanPham có nhiều DonHang
+Mỗi DonHang chỉ thuộc:
+1 User
+1 SanPham
 🎯 Mục tiêu
+Làm quen với cấu trúc project Spring Boot chuẩn
 
-Làm quen với cấu trúc project Spring Boot chuẩn:
+Xây dựng REST API theo mô hình:
 
 Controller – Service – Repository
-Triển khai bảo mật API bằng Spring Security & JWT
-Áp dụng DTO (Data Transfer Object) và ModelMapper
-Thực hành Unit Test với JUnit 5 & Mockito
-Tự động hóa tài liệu API bằng Swagger UI
+Áp dụng:
+DTO
+Validation
+Exception Handling
+Thực hành Unit Test với JUnit & Mockito
+Tích hợp tài liệu API bằng Swagger UI
+📚 README Structure
+Giới thiệu dự án
+Mô tả nghiệp vụ
+Mục tiêu
+Công nghệ sử dụng
+Cấu trúc project
+Chức năng
+API
+Cấu hình
+Hướng dẫn chạy
 🛠 Công nghệ sử dụng
-Java 17
-Spring Boot 3.2.4
-Spring Data JPA & Hibernate
-Spring Security & JWT
-Springdoc OpenAPI (Swagger UI)
-JUnit 5 & Mockito
-SQL Server
+☕ Java 17
+🌱 Spring Boot 3.x
+🗄 Spring Data JPA & Hibernate
+🔐 Spring Security & JWT
+📄 Swagger UI (Springdoc OpenAPI)
+🧪 JUnit 5 & Mockito
+💾 SQL Server
+
 Công cụ:
+
 Maven
 Postman
 Lombok
 ModelMapper
-📂 Cấu trúc Project
-src/main/java/com/example/nguyentrunghieu_th03575
-├── config          # Cấu hình Security, Swagger, ModelMapper
-├── controller      # Xử lý Request/Response API
-├── dto             # Request / Response DTO
-├── entity          # Mapping Database (JPA Entities)
-├── enums           # Enum trạng thái (TaskStatus)
-├── exception       # Custom Exception & Global Handler
-├── repository      # Tầng truy xuất dữ liệu (JPA Repository)
-├── security        # Xử lý Filter JWT và phân quyền
-└── service         # Interface & Business Logic (impl)
+Git & GitHub
+📁 Cấu trúc project
+src/main/java/com/example/projectiku
+│
+├── config        # Cấu hình Security, Swagger, ModelMapper
+├── controller    # Xử lý request/response API
+├── dto           # Request / Response DTO
+├── entity        # Mapping database
+├── enums         # Enum trạng thái
+├── exception     # Custom Exception & Global Handler
+├── repository    # JPA Repository
+├── security      # JWT Filter & phân quyền
+└── service       # Business Logic
 🚀 Chức năng đã hoàn thành
-👤 User & Auth Module
-Xác thực người dùng bằng JWT
-Phân quyền:
-ROLE_ADMIN: Toàn quyền
-ROLE_USER: Xem và lọc
-API đăng nhập và lấy thông tin User hiện tại
-📝 DonHang (Order) Module
-CRUD Đơn hàng đầy đủ
-Gán nhân sự cho công việc (assignTask)
-Cập nhật trạng thái công việc (theo vòng đời)
-Lấy danh sách task:
-Theo nhân sự
-Theo dự án
-Lọc đơn hàng theo trạng thái (TaskStatus)
-⚠️ Xử lý Exception & Validation
-Kiểm tra trùng:
-Mã đơn hàng
-Username
-Custom Exception:
-CustomResourceNotFound
-Validate dữ liệu đầu vào bằng @Valid
-📮 API mẫu (Main Endpoints)
+👤 User Module
+CRUD User
+Validate dữ liệu
+Kiểm tra trùng username
+DTO + ModelMapper
+Global Exception Handling
+🛍️ SanPham Module
+CRUD Sản phẩm
+Quản lý thông tin sản phẩm
+Quan hệ 1-N với DonHang
+📝 DonHang Module
+CRUD Đơn hàng
+Gán User cho công việc
+Gán DonHang cho SanPham
+Lấy danh sách:
+Theo User
+Theo SanPham
+
+Quản lý trạng thái:
+
+TODO → IN_PROGRESS → DONE
+Validate dữ liệu đầu vào
+Xử lý exception khi không tìm thấy dữ liệu
+📮 API mẫu
 Method	Endpoint	Mô tả
-POST	/api/auth/login	Đăng nhập nhận JWT Token
-GET	/api/donhangs	Lấy toàn bộ danh sách đơn hàng
-PATCH	/api/donhangs/{id}/status	Cập nhật trạng thái
-PATCH	/api/donhangs/{taskId}/assign/{userId}	Gán nhân sự
-GET	/api/donhangs/user/{userId}	Lấy task theo nhân viên
-DELETE	/api/donhangs/{id}	Xóa đơn hàng (ADMIN)
-📌 Quy ước API
-Chuẩn RESTful
-Dữ liệu trao đổi: JSON
-HTTP Status Codes
-200 OK – Thành công
-201 Created – Tạo mới thành công
-400 Bad Request – Dữ liệu không hợp lệ
-404 Not Found – Không tìm thấy
-403 Forbidden – Không đủ quyền
-⚙️ Cấu hình Hệ thống
-🗄 Database (SQL Server)
-Database Name: IKU
-Tài khoản: sa / 123456
-Initial Data:
-Tự động tạo bảng và chèn ~30 đơn hàng từ data.sql
-🧠 Hibernate Configuration
-ddl-auto=create: Tự động tạo bảng
-show-sql=true: Hiển thị SQL để debug
-▶️ Hướng dẫn Setup & Chạy Project
-1. Setup môi trường
-Cài đặt:
-Java 17
-SQL Server
-
+POST	/api/auth/login	Đăng nhập
+GET	/api/donhangs	Lấy danh sách
+PATCH	/api/donhangs/{id}/status	Update trạng thái
+PATCH	/api/donhangs/{taskId}/assign/{userId}	Gán User
+GET	/api/donhangs/user/{userId}	Lấy theo User
+DELETE	/api/donhangs/{id}	Xóa (ADMIN)
+⚙️ Cấu hình hệ thống
+🗄 Database
+Name: IKU
+User: sa
+Password: 123456
+🧠 Hibernate
+ddl-auto=create
+show-sql=true
+▶️ Hướng dẫn chạy project
+1. Setup
+Cài Java 17
+Cài SQL Server
 Tạo database:
-
 IKU
-Cấu hình trong application.properties
-2. Khởi chạy
-Mở project bằng IntelliJ IDEA
-Maven tự động tải dependencies
-Chạy class:
+2. Run project
+Mở bằng IntelliJ
+Chạy:
 NguyenTrungHieuTh03575Application.java
-3. Test API bằng Swagger
-Truy cập:
-http://localhost:8080/swagger-ui/index.html
-Đăng nhập:
-POST /api/auth/login
+3. Test API
 
-Tài khoản mẫu:
+Truy cập:
+
+http://localhost:8080/swagger-ui/index.html
+
+Login:
 
 username: hieunt
 password: 12345
-Sau đó:
-Nhấn Authorize
 
-Nhập:
+Authorize:
 
 Bearer <token>
 📅 Kế hoạch phát triển
- Xây dựng cấu trúc project chuẩn
- CRUD Đơn hàng & Sản phẩm
- Tích hợp Spring Security & JWT
- Global Exception Handling
- Unit Test (Service Layer)
- Xây dựng Frontend (React / Angular)
+ Cấu trúc project chuẩn
+ CRUD hệ thống
+ JWT Authentication
+ Global Exception
+ Unit Test
+ Frontend (React / Angular)
  Deploy Docker / Cloud
-👨‍💻 Thông tin sinh viên
+👨‍💻 Thông tin
 Họ tên: Nguyễn Trung Hiếu
 MSV: TH03575
-Vị trí: Thực tập sinh Backend Java
-GitHub: [Link GitHub của Hiếu tại đây]
+Vị trí: Backend Intern
+GitHub: (thêm link của bạn vào đây)
