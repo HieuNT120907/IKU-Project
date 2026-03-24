@@ -158,7 +158,7 @@ src/main/java/com/example/nguyentrunghieu_th03575
 * **Họ tên:** Nguyễn Trung Hiếu
 * **MSV:** TH03575
 * **Vị trí:** Thực tập sinh Backend Java
-* **GitHub:** [Chèn link GitHub của bạn tại đây]
+* **GitHub:** https://github.com/HieuNT120907/IKU-Project/tree/main
 
 ---
 **© 2026 Nguyễn Trung Hiếu - Iku Project**
