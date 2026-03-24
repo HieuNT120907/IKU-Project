@@ -1,251 +1,164 @@
-📦 NguyenTrungHieu_TH03575 Project
-📌 Giới thiệu
+ Intern-IKU
+# 📦 DỰ ÁN QUẢN LÝ ĐƠN HÀNG – IKU PROJECT
 
-NguyenTrungHieu_TH03575 Project là một dự án Spring Boot REST API được xây dựng nhằm mục đích học tập và thực hành phát triển hệ thống Backend theo chuẩn doanh nghiệp.
+**Sinh viên thực hiện:** Nguyễn Trung Hiếu
+**Mã sinh viên:** TH03575
+**Vị trí:** Thực tập sinh Backend Java – FPT Polytechnic
 
-Dự án mô phỏng một hệ thống quản lý bán hàng đơn giản, cho phép quản lý:
+---
 
-👤 Người dùng (User)
-🛒 Sản phẩm (SanPham)
-📦 Đơn hàng (DonHang)
+## 📌 1. Giới thiệu dự án
 
-Hệ thống được thiết kế theo kiến trúc Layered Architecture (Controller – Service – Repository), đảm bảo:
+**Iku Project** là hệ thống REST API xây dựng bằng Spring Boot, nhằm tối ưu hóa quy trình quản lý bán hàng nội bộ.
+Dự án tập trung vào 3 thành phần chính:
 
-Tách biệt rõ ràng giữa các tầng xử lý
-Dễ mở rộng và bảo trì
-Tuân thủ nguyên tắc Clean Code
+* Người dùng (**User**)
+* Sản phẩm (**Product**)
+* Đơn hàng (**Order**)
 
-Ngoài ra, hệ thống còn tích hợp:
+Hệ thống được thiết kế theo kiến trúc phân lớp rõ ràng, đảm bảo dễ bảo trì và mở rộng, đồng thời áp dụng các tiêu chuẩn bảo mật hiện đại.
 
-🔐 Xác thực & phân quyền bằng JWT
-📄 Swagger UI để test API
-⚠️ Global Exception Handling
-📋 Mô tả nghiệp vụ (Business Description)
+---
 
-Hệ thống phục vụ cho việc quản lý bán hàng cơ bản trong nội bộ doanh nghiệp hoặc cửa hàng nhỏ.
+## 📋 2. Mô tả nghiệp vụ
 
-👤 User (Người dùng)
+Hệ thống quản lý mối quan hệ giữa các thực thể:
 
-User là đối tượng sử dụng hệ thống.
+### 👤 User
 
-Chức năng:
-Đăng ký / đăng nhập hệ thống
-Nhận JWT Token để truy cập API
-Thực hiện các thao tác theo quyền (USER / ADMIN)
-Thông tin cơ bản:
-Username
-Password (được mã hóa)
-Role (USER / ADMIN)
-🛒 Sản phẩm (SanPham)
+* Đại diện cho người sử dụng hệ thống
+* Bao gồm khách hàng và quản lý
 
-SanPham đại diện cho hàng hóa trong hệ thống.
+### 🛍️ Product
 
-Chức năng:
-Thêm / sửa / xóa sản phẩm
-Quản lý tồn kho
-Cung cấp dữ liệu cho đơn hàng
-Thông tin:
-Tên sản phẩm
-Giá
-Số lượng
-Mô tả (nếu có)
-📦 Đơn hàng (DonHang)
+* Danh sách sản phẩm trong kho
+* Bao gồm: mã, tên, giá và thông tin liên quan
 
-DonHang là thực thể trung tâm, đại diện cho giao dịch mua bán.
+### 📝 Order
 
-Chức năng:
-Tạo đơn hàng
-Gán sản phẩm vào đơn hàng
-Gán user thực hiện đơn hàng
-Cập nhật trạng thái đơn
-🔗 Quan hệ nghiệp vụ
-Một User có thể có nhiều Đơn hàng
-Một Đơn hàng thuộc về một User
-Một Đơn hàng có thể chứa nhiều Sản phẩm
+* Thành phần trung tâm của hệ thống
+* Mỗi đơn hàng:
 
-👉 Đây là mô hình quan hệ phổ biến trong hệ thống thương mại.
+  * Thuộc về một **User**
+  * Gắn với một **Product**
+  * Có trạng thái xử lý theo luồng:
 
-🎯 Mục tiêu dự án
+  ```
+  TODO → IN_PROGRESS → DONE
+  ```
 
-Dự án được xây dựng nhằm:
+---
 
-Hiểu rõ cách tổ chức project Spring Boot chuẩn
-Áp dụng mô hình RESTful API
-Tách lớp rõ ràng:
-Controller → nhận request
-Service → xử lý business logic
-Repository → truy vấn database
-Sử dụng DTO để tránh lộ Entity
-Áp dụng Validation dữ liệu đầu vào
-Xây dựng hệ thống xử lý lỗi tập trung
-Tích hợp bảo mật với JWT
-Làm quen với Swagger để test API
-🛠 Công nghệ sử dụng
-Công nghệ	Mô tả
-Java 17	Ngôn ngữ chính
-Spring Boot 3.x	Framework backend
-Spring Data JPA	ORM
-Hibernate	Mapping database
-Spring Security	Bảo mật
-JWT	Xác thực
-Swagger (OpenAPI)	Test API
-SQL Server	Database
-Maven	Quản lý dependency
-Postman	Test API
-Git	Version control
-📂 Cấu trúc project
+## 🛠 3. Công nghệ sử dụng
+
+* **Backend:** Java 17, Spring Boot 3.2.4
+* **Data Access:** Spring Data JPA, Hibernate, SQL Server
+* **Security:** Spring Security, JWT (JSON Web Token)
+* **API Docs:** SpringDoc OpenAPI (Swagger UI)
+* **Testing:** JUnit 5, Mockito
+* **Tools:** Maven, Lombok, ModelMapper
+
+---
+
+## 📂 4. Cấu trúc Project
+
+```
 src/main/java/com/example/nguyentrunghieu_th03575
-│
-├── config
-│   ├── SecurityConfig.java
-│   ├── SwaggerConfig.java
-│
-├── controller
-│   ├── AuthController.java
-│   ├── UserController.java
-│   ├── SanPhamController.java
-│   ├── DonHangController.java
-│
-├── dto
-│   ├── request
-│   └── response
-│
-├── entity
-│   ├── User.java
-│   ├── SanPham.java
-│   ├── DonHang.java
-│
-├── enums
-│   ├── Role.java
-│
-├── exception
-│   ├── CustomException.java
-│   ├── GlobalExceptionHandler.java
-│
-├── repository
-│   ├── UserRepository.java
-│   ├── SanPhamRepository.java
-│   ├── DonHangRepository.java
-│
-├── security
-│   ├── JwtFilter.java
-│   ├── JwtUtil.java
-│
-├── service
-│   ├── UserService.java
-│   ├── SanPhamService.java
-│   ├── DonHangService.java
-│
-└── validation
-🚀 Chức năng đã hoàn thành
-👤 User Module
-CRUD User
-Validate dữ liệu đầu vào
-Mã hóa password bằng BCrypt
-Phân quyền:
-USER
-ADMIN
-Kiểm tra trùng username
-🛒 SanPham Module
-CRUD sản phẩm
-Validate dữ liệu
-Quản lý số lượng
-📦 DonHang Module
-CRUD đơn hàng
-Gán User cho đơn hàng
-Liên kết sản phẩm
-Kiểm tra tồn tại dữ liệu trước khi tạo
-🔐 Authentication & Authorization
-Đăng nhập bằng JWT
-Tạo token khi login thành công
-Gửi token qua Header:
-Authorization: Bearer <token>
-Phân quyền truy cập API
-Bảo vệ endpoint theo role
-📮 API mẫu (Chi tiết)
-🔐 Authentication API
-Method	Endpoint	Mô tả
-POST	/api/auth/login	Đăng nhập và trả về JWT
-👤 User API
-Method	Endpoint	Mô tả
-GET	/api/users	Lấy danh sách
-GET	/api/users/{id}	Lấy theo ID
-POST	/api/users	Tạo user
-PUT	/api/users/{id}	Cập nhật
-DELETE	/api/users/{id}	Xóa
-🛒 SanPham API
-Method	Endpoint	Mô tả
-GET	/api/sanpham	Lấy danh sách
-POST	/api/sanpham	Tạo
-PUT	/api/sanpham/{id}	Cập nhật
-DELETE	/api/sanpham/{id}	Xóa
-📦 DonHang API
-Method	Endpoint	Mô tả
-GET	/api/donhang	Lấy danh sách
-POST	/api/donhang	Tạo
-PUT	/api/donhang/{id}	Cập nhật
-DELETE	/api/donhang/{id}	Xóa
-📌 Quy ước API
-Chuẩn RESTful
-Dữ liệu JSON
-Status Code:
-Code	Ý nghĩa
-200	Thành công
-201	Tạo mới
-400	Sai dữ liệu
-401	Unauthorized
-403	Forbidden
-404	Not Found
-409	Conflict
-500	Server Error
-⚠️ Xử lý Exception
+├── config        # Cấu hình Security, Swagger, ModelMapper
+├── controller    # Xử lý Request & Response API
+├── dto           # Đối tượng trung gian (Request/Response)
+├── entity        # Mapping Database (JPA Entities)
+├── enums         # Trạng thái đơn hàng
+├── exception     # Xử lý lỗi tập trung
+├── repository    # Data Access Layer
+├── security      # JWT Filter & phân quyền
+└── service       # Business Logic
+```
 
-Hệ thống sử dụng Global Exception Handler:
+---
 
-404 → Không tìm thấy dữ liệu
-400 → Validate lỗi
-409 → Trùng dữ liệu
-500 → Lỗi server
+## 🚀 5. Chức năng đã hoàn thành
 
-Sử dụng:
+### 🔐 Bảo mật & Phân quyền
 
-@ControllerAdvice
-⚙️ Cấu hình Database
-SQL Server
-Database: project_java
-Port: 1433
-CREATE DATABASE project_java;
-🧠 Hibernate Configuration
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-▶️ Hướng dẫn chạy Project
-🔹 Cách 1: Chạy bằng IDE
-Clone project:
-git clone <repo>
-Cấu hình database trong application.properties
-Run:
-NguyenTrungHieuTh03575Application.java
-🔹 Cách 2: Build JAR
-mvn clean package -DskipTests
-java -jar target/*.jar
-🧪 Test bằng Swagger
+* Xác thực người dùng bằng JWT
+* Phân quyền:
 
-Truy cập:
+  * **USER:** Chỉ xem dữ liệu
+  * **MANAGER:** Toàn quyền CRUD
+* Lấy thông tin user hiện tại từ hệ thống
 
+---
+
+### 📦 Quản lý Đơn hàng
+
+* CRUD đầy đủ cho **Đơn hàng** và **Sản phẩm**
+* Áp dụng logic nghiệp vụ:
+
+  * Không cho phép chỉnh sửa đơn hàng khi đã ở trạng thái **DONE**
+  * Đảm bảo tính minh bạch và toàn vẹn dữ liệu
+
+---
+
+### 🧪 Kiểm thử
+
+* Viết Unit Test cho `DonHangService` bằng Mockito
+* Đảm bảo logic nghiệp vụ hoạt động chính xác trước khi triển khai
+
+---
+
+## 📮 6. Danh sách API chính
+
+| Method | Endpoint           | Mô tả                    |
+| ------ | ------------------ | ------------------------ |
+| POST   | /api/auth/login    | Đăng nhập và lấy JWT     |
+| GET    | /api/donhangs      | Lấy danh sách đơn hàng   |
+| GET    | /api/donhangs/{id} | Lấy chi tiết đơn hàng    |
+| POST   | /api/donhangs      | Tạo mới đơn hàng         |
+| PUT    | /api/donhangs/{id} | Cập nhật (chặn nếu DONE) |
+| DELETE | /api/donhangs/{id} | Xóa (chỉ MANAGER)        |
+
+---
+
+## ⚙️ 7. Hướng dẫn chạy Project
+
+### 🗄️ Cấu hình Database
+
+```sql
+CREATE DATABASE NguyenTrungHieu_TH03575;
+```
+
+* Cập nhật `username` và `password` trong `application.properties`
+
+---
+
+### ▶️ Chạy ứng dụng
+
+1. Mở project bằng IntelliJ IDEA
+2. Chạy class chính:
+
+```
+NguyenTrungHieuTh03575Application
+```
+
+3. Truy cập Swagger:
+
+```
 http://localhost:8080/swagger-ui/index.html
-Các bước:
-Login lấy token
-Bấm Authorize
-Dán token
-Test API
-📅 Kế hoạch phát triển
-Thêm Unit Test đầy đủ
-Thêm Docker
-Deploy server
-Tối ưu performance
-Thêm pagination API
-👨‍💻 Thông tin sinh viên
-Họ tên: Nguyễn Trung Hiếu
-MSSV: TH03575
-Định hướng: Backend Java Developer
-Công nghệ: Spring Boot
+```
+
+---
+
+## 🧪 8. Test API bằng Swagger
+
+1. Mở Swagger UI
+2. Gọi API **/api/auth/login** để lấy Token
+3. Nhấn **Authorize** (biểu tượng ổ khóa)
+4. Dán Token vào
+5. Thử nghiệm các API với **Try it out**
+
+---
+
+## © 2026
+
+**Nguyễn Trung Hiếu – TH03575**
