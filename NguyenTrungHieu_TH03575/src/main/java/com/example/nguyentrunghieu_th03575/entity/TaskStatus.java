@@ -1,4 +1,4 @@
-package com.example.nguyentrunghieu_th03575.enums;
+package com.example.nguyentrunghieu_th03575.entity;
 
 import lombok.Getter;
 
