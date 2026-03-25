@@ -1,7 +1,7 @@
 -- 1. Thêm dữ liệu Người dùng (Đảm bảo có ID 1, 2, 3)
-INSERT INTO users (username, password, full_name, role) VALUES ('hieunt', '12345', 'Nguyen Trung Hieu', 'ROLE_ADMIN');
-INSERT INTO users (username, password, full_name, role) VALUES ('intern_test', '12345', 'Tester Intern', 'ROLE_USER');
-INSERT INTO users (username, password, full_name, role) VALUES ('manh_dev', '12345', 'Le Van Manh', 'ROLE_USER');
+INSERT INTO users (username, password, full_name, role) VALUES ('hieunt', '$2a$10$TIUh9gSMBUaNiv8sDL8Klumueg5F2VKH8i68J1EjBm3J1u1IRSG.K', 'Nguyen Trung Hieu', 'ROLE_ADMIN');
+INSERT INTO users (username, password, full_name, role) VALUES ('intern_test', '$2a$10$TIUh9gSMBUaNiv8sDL8Klumueg5F2VKH8i68J1EjBm3J1u1IRSG.K', 'Tester Intern', 'ROLE_USER');
+INSERT INTO users (username, password, full_name, role) VALUES ('manh_dev', '$2a$10$TIUh9gSMBUaNiv8sDL8Klumueg5F2VKH8i68J1EjBm3J1u1IRSG.K', 'Le Van Manh', 'ROLE_USER');
 
 -- 2. Dữ liệu Sản phẩm (Đảm bảo có ID từ 1 đến 6)
 INSERT INTO san_phams (ten, ma, nha_san_xuat, gia, ghi_chu) VALUES ('Laptop Dell XPS', 'SP001', 'Dell', 25000000, 'Hàng cao cấp');

@@ -26,22 +26,19 @@ public class AuthController {
     private UserRepo userRepo;
 
     @Autowired
-    private PasswordEncoder passwordEncoder; // Thằng này dùng để băm mật khẩu (BCrypt)
+    private PasswordEncoder passwordEncoder;
 
-    // 1. API Đăng ký tài khoản
     @PostMapping("/register")
     public ResponseEntity<ApiRespone<String>> register(@Valid @RequestBody RegisterRequest request) {
-        // Kiểm tra xem username đã tồn tại chưa
         if (userRepo.findByUsername(request.getUsername()).isPresent()) {
             throw new RuntimeException("Username đã tồn tại, vui lòng chọn tên khác!");
         }
 
         User user = new User();
         user.setUsername(request.getUsername());
-        // Mã hóa mật khẩu trước khi lưu vào DB
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setFullName(request.getFullName());
-        user.setRole("ROLE_USER"); // Mặc định đăng ký mới là nhân viên (USER)
+        user.setRole("ROLE_USER");
 
         userRepo.save(user);
 
@@ -52,21 +49,19 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
-    // 2. API Đăng nhập và lấy JWT Token
     @PostMapping("/login")
     public ResponseEntity<ApiRespone<String>> login(@Valid @RequestBody AuthRequest request) {
-        // Spring Security sẽ tự động kiểm tra username và password mã hóa
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
         );
 
-        // Nếu pass qua được dòng trên, nghĩa là đăng nhập đúng -> Sinh Token
         String token = jwtUtil.generateToken(request.getUsername());
 
         ApiRespone<String> response = ApiRespone.<String>builder()
                 .code(200)
                 .message("Đăng nhập thành công!")
-                .data(token) // Nhét chữ Token vào trong Data trả về
+                .data(token)
                 .build();
 
         return ResponseEntity.ok(response);

@@ -21,7 +21,7 @@ public class DonHang {
     private String maDonHang;
     private double soLuong;
     private LocalDate ngayDat;
-    private String trangThai;
+
     private String ghiChu;
     @ManyToOne
     @JoinColumn(name = "san_pham_id")
@@ -30,6 +30,6 @@ public class DonHang {
     @JoinColumn(name = "user_id")
     private User user;
     @Enumerated(EnumType.STRING)
-
-    private TaskStatus taskStatus = TaskStatus.TODO;
+    @Column(name = "trang_thai")
+    private TaskStatus taskStatus;
 }
